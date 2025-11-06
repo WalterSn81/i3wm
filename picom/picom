@@ -1,0 +1,39 @@
+backend = "glx";
+vsync = true;
+shadow = true;
+fading = true;
+fade-delta = 5;
+fade-in-step = 0.03;
+fade-out-step = 0.03;
+shadow = true;
+shadow-radius = 12;
+shadow-offset-x = -12;
+shadow-offset-y = -12;
+
+# Transparenz (optional)
+inactive-opacity = 0.95;
+active-opacity = 1.0;
+frame-opacity = 0.9;
+
+# Abgerundete Ecken
+corner-radius = 12;
+round-borders = 1;
+
+# Abgerundete Fenster nur für bestimmte Klassen (optional)
+rounded-corners-exclude = [
+  "class_g = 'i3-frame'",
+  "window_type = 'dock'",
+  "window_type = 'desktop'"
+];
+
+# Performance
+vsync = true;
+
+
+opacity-rule = [
+  "85:class_g = 'i3bar'",
+  "85:class_g = 'bar-0'",
+  "100:class_g = 'i3lock'",
+  "85:class_g = 'Alacritty'"
+];
+
