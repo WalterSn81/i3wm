@@ -1,1 +1,2 @@
-https://github.com/WalterSn81/i3wm/blob/main/pannel.png
+Require:
+pkg install i3wm i3blocks picom
