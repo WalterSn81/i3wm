@@ -1,0 +1,85 @@
+set $mod Mod4
+set $ws1 " 1:"
+set $ws2 " 2:"
+set $ws3 " 3:☢"
+
+workspace $ws1 output eDP-1
+#workspace $ws2 output DP-3-8
+#workspace $ws3 output DP-3-1
+
+font pango:monospace 20 
+set $refresh_i3status killall -SIGUSR1 i3status
+floating_modifier $mod
+tiling_drag modifier titlebar
+for_window[class="^.*"] border pixel 1
+gaps inner 6
+gaps outer 6
+
+### exec
+exec --no-startup-id i3-msg 'workspace $ws1:'
+exec --no-startup-id i3-msg 'workspace $ws2:'
+exec --no-startup-id i3-msg 'workspace $ws3:'
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id feh --bg-fill /home/wharder/.config/i3/walpapper1.jpg
+exec --no-startup-id picom
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+exec --no-startup-id setxkbmap de
+
+### bindsym
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
+bindsym $mod+Return exec alacritty --config-file /home/wharder/.config/alacritty/alacritty.toml 
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+1 move container to workspace $ws1 
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+d exec --no-startup-id dmenu_run -nb '#2e3440' -nf '#d8dee9' -sb '#88c0d0' -sf '#2e3440' -fn "JetBrainsMono Nerd Font-16" 
+bindsym $mod+Shift+F3 exec --no-startup-id /usr/local/bin/vol.py up 
+bindsym $mod+Shift+F2 exec --no-startup-id /usr/local/bin/vol.py down
+bindsym $mod+l exec i3lock -c 000000
+bindsym $mod+Shift+p exec doas poweroff
+bindsym $mod+Shift+r exec doas reboot
+bindsym $mod+f exec firefox file:///home/wharder/pCloud
+bindsym $mod+v split v
+bindsym $mod+h split h
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+    bindsym $left       resize shrink width 10 px or 10 ppt
+    bindsym $down       resize grow height 10 px or 10 ppt
+    bindsym $up         resize shrink height 10 px or 10 ppt
+    bindsym $right      resize grow width 10 px or 10 ppt
+    bindsym Left        resize shrink width 10 px or 10 ppt
+    bindsym Down        resize grow height 10 px or 10 ppt
+    bindsym Up          resize shrink height 10 px or 10 ppt
+    bindsym Right       resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Mod1+r mode "default"
+}
+
+bar {
+    workspace_buttons yes
+    status_command i3blocks
+    i3bar_command i3bar --transparency
+    position top
+    separator_symbol "/"
+    tray_output primary
+    font pango: JetBrainsMono Nerd Font 14
+    colors {
+        background        #1e1e2e00
+        statusline        #fa6800
+        separator         #000000
+        focused_workspace #fa680000 #fa680000 #b30202
+        active_workspace  #fa680000 #fa680000 #000000
+        inactive_workspace #fa680000 #fa680000 #000000
+        #urgent_workspace #fa6800 #fa680000 #000000
+    }
+}
