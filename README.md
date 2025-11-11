@@ -1,7 +1,12 @@
-My i3wm setup on FreeBSD
+# i3wm Setup on FreeBSD
 
-Require:
+My personal **i3 window manager** setup on FreeBSD.
+
+## Requirements
+Install the needed packages:
+```bash
 pkg install i3wm i3blocks picom
+
 
 Screenshot:
 ![Psnnel](pannel.png)
