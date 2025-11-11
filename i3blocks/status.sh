@@ -5,6 +5,8 @@ warningColor="#ffde59"
 VPNColor="#008a02"
 normalColor="#000000"
 
+
+
 msgString=""
 
 akkuSymbol=""
